@@ -4,6 +4,10 @@ $notetext: rgb(135, 106, 106);
 
 $boardcolor: rgb(87, 192, 114);
 
+header {
+    font-family: "Lato", sans;
+}
+
 #board {
     height: 30em;
     border: solid black 3px;

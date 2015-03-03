@@ -1,3 +1,6 @@
+header {
+  font-family: "Lato", sans; }
+
 #board {
   height: 30em;
   border: solid black 3px;
