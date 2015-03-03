@@ -1,12 +1,9 @@
 function createNote(x,y){
-    var note = $(document.createElement("div")).
+    return $(document.createElement("div")).
         addClass("note").
         css("left", x + "px").
-        css("top", y + "px");
-
-    note[0].setAttribute("contentEditable", "true");
-    note[0].focus();
-    return note;
+        css("top", y + "px").
+        attr("contentEditable", "true");
 };
 
 $(function(){
@@ -30,5 +27,6 @@ $(function(){
         var note = createNote(event.clientX, event.clientY);
         $(event.target).append(note);
         note.draggable();
+        note.focus();
     });
 });
