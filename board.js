@@ -7,6 +7,7 @@ function putNote(x,y){
     $("#board").append(note);
     note[0].setAttribute("contentEditable", "true");
     note[0].focus();
+    note.draggable();
 };
 
 $(function(){
