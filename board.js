@@ -22,6 +22,7 @@ $(function(){
             if (event.shiftKey) {
                 $(event.target).remove();
             }
+            event.target.focus();
             return false;
         };
 
