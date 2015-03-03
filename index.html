@@ -13,24 +13,24 @@
 </body>
 <script>
 
-function putBox(x,y){
+function putNote(x,y){
     console.log("%s,%s", x, y);
-    var box = $(document.createElement("div")).
-        addClass("box").
+    var note = $(document.createElement("div")).
+        addClass("note").
         css("left", x + "px").
         css("top", y + "px");
 
-    $("#board").append(box);
-    box[0].setAttribute("contentEditable", "true");
-    box[0].focus();
+    $("#board").append(note);
+    note[0].setAttribute("contentEditable", "true");
+    note[0].focus();
 };
 
 $(function(){
     $("#board").on("click", function(event){
-        if (event.target.classList.contains("box")) return false;
+        if (event.target.classList.contains("note")) return false;
         var x = event.clientX,
             y = event.clientY;
-        putBox(event.clientX, event.clientY);
+        putNote(event.clientX, event.clientY);
     });
 });
 </script>

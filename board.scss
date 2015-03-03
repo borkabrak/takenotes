@@ -1,6 +1,6 @@
-$boxcolor: rgb(245, 255, 165);
-$boxborder: darken($boxcolor, 50%);
-$boxtext: rgb(135, 106, 106);
+$notecolor: rgb(245, 255, 165);
+$noteborder: darken($notecolor, 50%);
+$notetext: rgb(135, 106, 106);
 
 $boardcolor: rgb(87, 192, 114);
 
@@ -11,14 +11,14 @@ $boardcolor: rgb(87, 192, 114);
     background-color: $boardcolor;
 }
 
-.box {
+.note {
     font-family: "Coming Soon", cursive;
-    border: solid $boxborder 2px;
-    color: $boxtext;
+    border: solid $noteborder 2px;
+    color: $notetext;
     border-radius: 0.2em;
     height: 1in;
     width: 2in;
     position: absolute;
-    background-color: $boxcolor;
+    background-color: $notecolor;
     padding: 1em;
 }
