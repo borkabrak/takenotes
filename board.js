@@ -60,4 +60,10 @@ $(function(){
     $("button#save").on('click', function(event){ save() });
     $("button#load").on('click', function(event){ load() });
 
+    // Autoload
+    if (localStorage.getItem("notes").length > 0) {
+        // wait for style, etc to be applied (I guess)
+        setTimeout(function(){load()}, 100);
+    };
+
 });
