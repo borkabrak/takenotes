@@ -1,0 +1,22 @@
+$box: rgb(232, 255, 48);
+$boxborder: darken($box, 50%);
+$boxtext: rgb(0, 0, 0);
+$aspect-ratio: 1.6;
+
+#board {
+    height: 30em;
+    border: solid black 3px;
+    border-radius: 1em;
+}
+
+.box {
+    font-family: "Coming Soon", cursive;
+    border: solid $boxborder 2px;
+    color: $boxtext;
+    border-radius: 0.2em;
+    height: 1in;
+    width: 2in;
+    position: absolute;
+    background-color: $box;
+    padding: 1em;
+}

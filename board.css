@@ -1,0 +1,15 @@
+#board {
+  height: 30em;
+  border: solid black 3px;
+  border-radius: 1em; }
+
+.box {
+  font-family: "Coming Soon", cursive;
+  border: solid #2b3000 2px;
+  color: black;
+  border-radius: 0.2em;
+  height: 1in;
+  width: 2in;
+  position: absolute;
+  background-color: #e8ff30;
+  padding: 1em; }

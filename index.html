@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/script/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="board.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Coming Soon" type="text/css">
+    <title></title>
+</head>
+<body>
+    <h1>Put something here</h1>
+    <div id="board"> </div>
+</body>
+<script>
+
+function putBox(x,y){
+    console.log("%s,%s", x, y);
+    var box = $(document.createElement("div")).
+        addClass("box").
+        css("left", x + "px").
+        css("top", y + "px");
+
+    $("#board").append(box);
+    box[0].setAttribute("contentEditable", "true");
+    box[0].focus();
+};
+
+$(function(){
+    $("#board").on("click", function(event){
+        var x = event.clientX,
+            y = event.clientY;
+        putBox(x,y);
+    });
+});
+</script>
+</html>
