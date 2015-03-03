@@ -57,13 +57,12 @@ $(function(){
 
     });
 
-    $("button#save").on('click', function(event){ save() });
-    $("button#load").on('click', function(event){ load() });
-
     // Autoload
     if (localStorage.getItem("notes").length > 0) {
         // wait for style, etc to be applied (I guess)
-        setTimeout(function(){load()}, 100);
+        var autoload = setTimeout(function(){load()}, 500);
     };
 
+    // autosave periodically
+    var autosave = setInterval(function(){ save() }, 500);
 });
