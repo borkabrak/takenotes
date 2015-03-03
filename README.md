@@ -11,6 +11,9 @@ TODO:
 * Undo removing notes
 
 * Delete button for a more obvious way to remove notes?
+    - and maybe a color picker with it to change the note color
+
+    - Eventually refactor logic to use Object.observe()?
 
 * Style notes to look more like scraps of notebook paper or post-its.
 

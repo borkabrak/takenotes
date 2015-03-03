@@ -1,10 +1,38 @@
-function createNote(x,y){
-    return $(document.createElement("div")).
+'use strict';
+
+function addNote(x,y, contents){
+    // optionally give contents to reload a specific note
+    var note = $(document.createElement("div")).
         addClass("note").
         css("left", x + "px").
         css("top", y + "px").
-        attr("contentEditable", "true");
+        attr("contentEditable", "true").
+        text(contents);
+
+        $(event.target).append(note);
+        note.draggable();
+        note.focus();
 };
+
+function load() {
+    var notes = JSON.parse(localStorage.getItem("notes"));
+    notes.forEach(function(note){
+        addNote(note.x, note.y, note.text);
+    });
+}
+
+function save() {
+    var notes = [];
+    $(".note").each(function(i, note){
+        notes.push({
+            text: $(note).text(),
+            x: parseInt($(note).css("left")),
+            y: parseInt($(note).css("top"))
+        });
+    });
+
+    localStorage.setItem("notes", JSON.stringify(notes));
+}
 
 $(function(){
 
@@ -24,9 +52,11 @@ $(function(){
 
         var x = event.clientX,
             y = event.clientY;
-        var note = createNote(event.clientX, event.clientY);
-        $(event.target).append(note);
-        note.draggable();
-        note.focus();
+        addNote(event.clientX, event.clientY);
+
     });
+
+    $("button#save").on('click', function(event){ save() });
+    $("button#load").on('click', function(event){ load() });
+
 });
