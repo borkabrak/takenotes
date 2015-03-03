@@ -4,6 +4,9 @@ $notetext: rgb(135, 106, 106);
 
 $boardcolor: rgb(87, 192, 114);
 
+$note-height: 1in;
+$note-aspect-ratio: 1.6;
+
 header {
     font-family: "Lato", sans;
 }
@@ -20,8 +23,8 @@ header {
     border: solid $noteborder 2px;
     color: $notetext;
     border-radius: 0.2em;
-    height: 1in;
-    width: 2in;
+    height: $note-height;
+    width: $note-height * $note-aspect-ratio;
     position: absolute;
     background-color: $notecolor;
     padding: 1em;
