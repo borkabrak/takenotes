@@ -10,8 +10,20 @@ function putNote(x,y){
 };
 
 $(function(){
+
+    // Clicking makes a new note
     $("#board").on("click", function(event){
-        if (event.target.classList.contains("note")) return false;
+
+        // If clicking on a note, don't create a new one
+        if (event.target.classList.contains("note")) {
+
+            // Shift-click removes notes
+            if (event.shiftKey) {
+                $(event.target).remove();
+            }
+            return false;
+        };
+
         var x = event.clientX,
             y = event.clientY;
         putNote(event.clientX, event.clientY);
