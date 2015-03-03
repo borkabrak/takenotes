@@ -1,12 +1,14 @@
-$box: rgb(232, 255, 48);
-$boxborder: darken($box, 50%);
-$boxtext: rgb(0, 0, 0);
-$aspect-ratio: 1.6;
+$boxcolor: rgb(245, 255, 165);
+$boxborder: darken($boxcolor, 50%);
+$boxtext: rgb(135, 106, 106);
+
+$boardcolor: rgb(87, 192, 114);
 
 #board {
     height: 30em;
     border: solid black 3px;
     border-radius: 1em;
+    background-color: $boardcolor;
 }
 
 .box {
@@ -17,6 +19,6 @@ $aspect-ratio: 1.6;
     height: 1in;
     width: 2in;
     position: absolute;
-    background-color: $box;
+    background-color: $boxcolor;
     padding: 1em;
 }
