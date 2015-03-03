@@ -9,12 +9,13 @@ function addNote(x,y, contents){
         attr("contentEditable", "true").
         text(contents);
 
-        $(event.target).append(note);
+        $("#board").append(note);
         note.draggable();
         note.focus();
 };
 
 function load() {
+    $(".note").remove();
     var notes = JSON.parse(localStorage.getItem("notes"));
     notes.forEach(function(note){
         addNote(note.x, note.y, note.text);
