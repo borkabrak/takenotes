@@ -1,5 +1,4 @@
 function putNote(x,y){
-    console.log("%s,%s", x, y);
     var note = $(document.createElement("div")).
         addClass("note").
         css("left", x + "px").
