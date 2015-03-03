@@ -6,6 +6,10 @@ A note-taking app using jQuery.
 TODO:
 =====
 
-Save notes
+* Save notes
 
-Undo removing notes
+* Undo removing notes
+
+* Delete button for a more obvious way to remove notes?
+
+* Style notes to look more like scraps of notebook paper or post-its.
