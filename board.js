@@ -61,7 +61,7 @@ $(function(){
     var default_notes = '[{"text":"Click on the board to add new notes.","x":31,"y":133},{"text":"Shift-click a note to remove it.","x":309,"y":134},{"text":"Drag notes around wherever you want them.","x":586,"y":134},{"text":"Notes are automatically loaded and saved for you behind the scenes.","x":860,"y":133}]';
 
     // Autoload
-    var autoload = setTimeout(function(){load((localStorage['notes'].length > 2) ? localStorage['notes'] : default_notes )}, 500);
+    var autoload = setTimeout(function(){load((localStorage['notes'] && localStorage['notes'].length > 2) ? localStorage['notes'] : default_notes )}, 500);
 
     // autosave periodically
     var autosave = setInterval(function(){ save() }, 500);
