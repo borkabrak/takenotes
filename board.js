@@ -38,23 +38,22 @@ function save() {
 $(function(){
 
     // Clicking makes a new note
-    $("#board").on("click", function(event){
-
-        // If clicking on a note, don't create a new one
-        if (event.target.classList.contains("note")) {
-
-            // Shift-click removes notes
-            if (event.shiftKey) {
-                $(event.target).remove();
-            }
-            event.target.focus();
-            return false;
-        };
+    $(document).on("click", '#board', function(event){
 
         var x = event.clientX,
             y = event.clientY;
         addNote(event.clientX, event.clientY);
 
+    });
+
+    $(document).on('click', '.note', function(event){
+
+        // Shift-click removes notes
+        if (event.shiftKey) {
+            $(event.target).remove();
+        }
+        event.target.focus();
+        event.stopPropagation();
     });
 
     // Autoload
