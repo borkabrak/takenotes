@@ -14,9 +14,11 @@ function addNote(x,y, contents){
         note.focus();
 };
 
-function load() {
+function load(notelist) {
+    // Load a particular note list (if given), or whatever is saved in local
+    // storage
     $(".note").remove();
-    var notes = JSON.parse(localStorage.getItem("notes"));
+    var notes = JSON.parse(notelist || localStorage["notes"]);
     notes.forEach(function(note){
         addNote(note.x, note.y, note.text);
     });
@@ -32,24 +34,13 @@ function save() {
         });
     });
 
-    localStorage.setItem("notes", JSON.stringify(notes));
+    localStorage["notes"] = JSON.stringify(notes);
 }
 
 $(function(){
 
     // Clicking makes a new note
-    $("#board").on("click", function(event){
-
-        // If clicking on a note, don't create a new one
-        if (event.target.classList.contains("note")) {
-
-            // Shift-click removes notes
-            if (event.shiftKey) {
-                $(event.target).remove();
-            }
-            event.target.focus();
-            return false;
-        };
+    $(document).on("click", '#board', function(event){
 
         var x = event.clientX,
             y = event.clientY;
@@ -57,11 +48,20 @@ $(function(){
 
     });
 
+    $(document).on('click', '.note', function(event){
+
+        // Shift-click removes notes
+        if (event.shiftKey) {
+            $(event.target).remove();
+        }
+        event.target.focus();
+        event.stopPropagation();
+    });
+
+    var default_notes = '[{"text":"Click on the board to add new notes.","x":31,"y":133},{"text":"Shift-click a note to remove it.","x":309,"y":134},{"text":"Drag notes around wherever you want them.","x":586,"y":134},{"text":"Notes are automatically loaded and saved for you behind the scenes.","x":860,"y":133}]';
+
     // Autoload
-    if (localStorage.getItem("notes").length > 0) {
-        // wait for style, etc to be applied (I guess)
-        var autoload = setTimeout(function(){load()}, 500);
-    };
+    var autoload = setTimeout(function(){load((localStorage['notes'].length > 2) ? localStorage['notes'] : default_notes )}, 500);
 
     // autosave periodically
     var autosave = setInterval(function(){ save() }, 500);
