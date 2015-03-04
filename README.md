@@ -21,6 +21,4 @@ TODO:
 
 * When restoring from no previous notes, js error thrown
 
-* Default note layout - containing instructions
-
 * Adjust board height to window
