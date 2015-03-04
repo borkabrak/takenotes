@@ -16,7 +16,7 @@ function addNote(x,y, contents){
 
 function load() {
     $(".note").remove();
-    var notes = JSON.parse(localStorage.getItem("notes"));
+    var notes = JSON.parse(localStorage["notes"]);
     notes.forEach(function(note){
         addNote(note.x, note.y, note.text);
     });
@@ -32,7 +32,7 @@ function save() {
         });
     });
 
-    localStorage.setItem("notes", JSON.stringify(notes));
+    localStorage["notes"] = JSON.stringify(notes);
 }
 
 $(function(){
@@ -58,7 +58,7 @@ $(function(){
     });
 
     // Autoload
-    if (localStorage.getItem("notes").length > 0) {
+    if (localStorage["notes"].length > 0) {
         // wait for style, etc to be applied (I guess)
         var autoload = setTimeout(function(){load()}, 500);
     };
