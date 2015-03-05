@@ -3,6 +3,8 @@ Take Notes
 
 A note-taking app using jQuery.
 
+Here's a [demo](http://borkabrak.org/takenotes)
+
 TODO:
 =====
 
