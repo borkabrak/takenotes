@@ -14,11 +14,11 @@ function addNote(x,y, contents){
         note.focus();
 };
 
-function load(notelist) {
-    // Load a particular note list (if given), or whatever is saved in local
-    // storage
+function load(notes) {
+    // Load a particular note list.  Handle input as json or object
+
     $(".note").remove();
-    var notes = JSON.parse(notelist || localStorage["notes"]);
+    notes = (typeof notes === "string") ? JSON.parse(notes) : notes;
     notes.forEach(function(note){
         addNote(note.x, note.y, note.text);
     });
@@ -58,10 +58,33 @@ $(function(){
         event.stopPropagation();
     });
 
-    var default_notes = '[{"text":"Click on the board to add new notes.","x":31,"y":133},{"text":"Shift-click a note to remove it.","x":309,"y":134},{"text":"Drag notes around wherever you want them.","x":586,"y":134},{"text":"Notes are automatically loaded and saved for you behind the scenes.","x":860,"y":133}]';
+    // Get notes to show.  If none saved, use a default set
+    var notes = (localStorage['notes'] && localStorage['notes'].length > 2) ? localStorage['notes'] : JSON.stringify([
+        {
+            "text":"Click on the board to add new notes.",
+            "x":31,
+            "y":133
+        },
+
+        {
+            "text":"Shift-click a note to remove it.",
+            "x":309,
+            "y":133
+        },
+        {
+            "text":"Drag notes around wherever you want them.",
+            "x":586,
+            "y":133
+        },
+        {
+            "text":"Notes are automatically loaded and saved for you behind the scenes.",
+            "x":860,
+            "y":133
+        }
+    ]);
 
     // Autoload
-    var autoload = setTimeout(function(){load((localStorage['notes'].length > 2) ? localStorage['notes'] : default_notes )}, 500);
+    var autoload = setTimeout(function(){load(notes)}, 500);
 
     // autosave periodically
     var autosave = setInterval(function(){ save() }, 500);
