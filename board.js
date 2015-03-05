@@ -4,27 +4,22 @@ function getNotes(){
     // Get notes to show.  If none saved, use a default set
     return (localStorage['notes'] && localStorage['notes'].length > 2) ? localStorage['notes'] : JSON.stringify([
         {
-            "text":"Click on the board to add new notes.",
-            "x":31,
-            "y":133
-        },
-
-        {
-            "text":"Shift-click a note to remove it.",
-            "x":309,
-            "y":133
-        },
-        {
-            "text":"Drag notes around wherever you want them.",
-            "x":586,
-            "y":133
+            "text":"This is a note.  You can edit it, you can drag it around and you can shift-click to delete it.",
+            "x":41,
+            "y":95
         },
         {
             "text":"Notes are automatically loaded and saved for you behind the scenes.",
-            "x":860,
-            "y":133
+            "x":597,
+            "y":95
+        },
+        {
+            "text":"Click any empty spot to create a new note.",
+            "x":317,
+            "y":95
         }
     ]);
+    //[{ "text":"Click on the board to add new notes.", "x":31, "y":133 }, { "text":"Shift-click a note to remove it.", "x":309, "y":133 }, { "text":"Drag notes around wherever you want them.", "x":586, "y":133 }, { "text":"Notes are automatically loaded and saved for you behind the scenes.", "x":860, "y":133 } ]
 }
 
 function addNote(x,y, contents){
