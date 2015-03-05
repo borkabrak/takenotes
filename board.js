@@ -80,6 +80,16 @@ $(function(){
 
     });
 
+    $(document).on('dragstart', '.note', function(event){
+        alert("pickup");
+        $(event.target).addClass("raised");
+    });
+
+    $(document).on('dragend', '.note', function(event){
+        alert("pickup");
+        $(event.target).removeClass("raised");
+    });
+
     $(document).on('click', '.note', function(event){
 
         // Shift-click removes notes

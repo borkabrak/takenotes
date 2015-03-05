@@ -8,7 +8,7 @@ header {
   background-color: #57c072; }
 
 .note {
-  font-family: "Coming Soon", cursive;
+  font-family: "Rock Salt", cursive;
   border: solid #93a500 2px;
   color: #876a6a;
   border-radius: 0.35em;
@@ -17,3 +17,5 @@ header {
   position: absolute;
   background-color: #f5ffa5;
   padding: 1em; }
+  .note .raised {
+    box-shadow: 10px 5px 5px black; }
