@@ -17,5 +17,5 @@ header {
   position: absolute;
   background-color: #f5ffa5;
   padding: 1em; }
-  .note .raised {
+  .note.raised {
     box-shadow: 10px 5px 5px black; }

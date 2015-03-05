@@ -20,10 +20,6 @@ header {
 
 .note {
     //font-family: "Coming Soon", cursive;
-    //font-family: "Shadows Into Light", cursive;
-    //font-family: "Gloria Hallelujah", cursive;
-    //font-family: "Amatic SC", cursive;
-    //font-family: "Shadows Into Light Two", cursive;
     font-family: "Rock Salt", cursive;
 
     border: solid $noteborder 2px;
@@ -35,7 +31,7 @@ header {
     background-color: $notecolor;
     padding: 1em;
 
-    .raised {
+    &.raised {
         box-shadow: 10px 5px 5px black;
     }
 }

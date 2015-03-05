@@ -68,20 +68,14 @@ $(function(){
 
     // Clicking makes a new note
     $(document).on("click", '#board', function(event){
-
-        var x = event.clientX,
-            y = event.clientY;
         addNote(event.clientX, event.clientY);
-
     });
 
     $(document).on('dragstart', '.note', function(event){
-        alert("pickup");
         $(event.target).addClass("raised");
     });
 
-    $(document).on('dragend', '.note', function(event){
-        alert("pickup");
+    $(document).on('dragstop', '.note', function(event){
         $(event.target).removeClass("raised");
     });
 
