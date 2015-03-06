@@ -1,7 +1,7 @@
 'use strict';
 
 function getNotes(){
-    // Get notes to show.  If none saved, use a default set
+    // return notes to show.  If none saved, use a default set
     return (localStorage['notes'] && localStorage['notes'].length > 2) ? localStorage['notes'] : JSON.stringify([
         {
             "text":"This is a note.  You can edit it, you can drag it around and you can shift-click to delete it.",
@@ -93,10 +93,8 @@ $(function(){
         $(event.target).removeClass("raised");
     });
 
-    var notes = getNotes();
-
     // Autoload
-    var autoload = setTimeout(function(){load((localStorage['notes'] && localStorage['notes'].length > 2) ? localStorage['notes'] : default_notes )}, 500);
+    var autoload = setTimeout(function(){ load(getNotes()) }, 500);
 
     // autosave periodically
     var autosave = setInterval(function(){ save() }, 500);
