@@ -93,9 +93,6 @@ $(function(){
         $(event.target).removeClass("raised");
     });
 
-    $(document).on('click', '.note', function(event){
-    });
-
     var notes = getNotes();
 
     // Autoload
