@@ -19,8 +19,4 @@ TODO:
 
 * Note() object?
 
-* When a note is selected, bring it in front of other notes
-
-* When restoring from no previous notes, js error thrown
-
 * Adjust board height to window
