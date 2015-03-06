@@ -73,6 +73,11 @@ $(function(){
 
     $(document).on('dragstart', '.note', function(event){
         $(event.target).addClass("raised");
+
+    });
+
+    $(document).on('mousedown', '.note', function(event){
+        $(event.target).parent().append(event.target); // Move element to front
     });
 
     $(document).on('dragstop', '.note', function(event){
