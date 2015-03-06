@@ -1,6 +1,7 @@
 $notecolor: rgb(245, 255, 165);
 $noteborder: darken($notecolor, 50%);
 $notetext: rgb(135, 106, 106);
+$shadow: darken($noteborder, 100%);
 
 $boardcolor: rgb(87, 192, 114);
 
@@ -19,7 +20,8 @@ header {
 }
 
 .note {
-    font-family: "Coming Soon", cursive;
+    font-family: "Rock Salt", cursive;
+
     border: solid $noteborder 2px;
     color: $notetext;
     border-radius: 0.35em;
@@ -28,4 +30,10 @@ header {
     position: absolute;
     background-color: $notecolor;
     padding: 1em;
+    box-shadow: 0.05em 0.05em 0.1em $shadow;
+
+    &.raised {
+        box-shadow: 0.2em 0.2em 0.5em $shadow;
+    }
 }
+

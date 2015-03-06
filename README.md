@@ -3,6 +3,8 @@ Take Notes
 
 A note-taking app using jQuery.
 
+Here's a [demo](http://borkabrak.org/takenotes)
+
 TODO:
 =====
 
@@ -25,9 +27,5 @@ TO MAYBE DO:
 
 * Note() object?
 * Shadow when dragging?
-
-* When a note is selected, bring it in front of other notes
-
-* When restoring from no previous notes, js error thrown
 
 * Adjust board height to window
