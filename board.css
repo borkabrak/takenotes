@@ -18,4 +18,4 @@ header {
   background-color: #f5ffa5;
   padding: 1em; }
   .note.raised {
-    box-shadow: 10px 5px 5px black; }
+    box-shadow: 0.1em 0.1em 0.25em black; }

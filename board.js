@@ -73,11 +73,20 @@ $(function(){
 
     $(document).on('dragstart', '.note', function(event){
         $(event.target).addClass("raised");
-
     });
 
     $(document).on('mousedown', '.note', function(event){
-        $(event.target).parent().append(event.target); // Move element to front
+        // Shift-click removes notes
+        if (event.shiftKey) {
+            $(event.target).remove();
+        }
+
+        // Move element to front
+        $(event.target).parent().append(event.target);
+
+        event.target.focus();
+        event.stopPropagation();
+
     });
 
     $(document).on('dragstop', '.note', function(event){
@@ -85,13 +94,6 @@ $(function(){
     });
 
     $(document).on('click', '.note', function(event){
-
-        // Shift-click removes notes
-        if (event.shiftKey) {
-            $(event.target).remove();
-        }
-        event.target.focus();
-        event.stopPropagation();
     });
 
     var notes = getNotes();
