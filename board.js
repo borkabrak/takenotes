@@ -64,11 +64,19 @@ function save() {
     localStorage["notes"] = JSON.stringify(notes);
 }
 
+function setHeight(){
+    $('#board').css("height", (window.innerHeight * 0.8) + "px");
+};
+
 $(function(){
 
     // Clicking makes a new note
     $(document).on("click", '#board', function(event){
         addNote(event.clientX, event.clientY);
+    });
+
+    $(window).on('resize', function(event){
+        setHeight();
     });
 
     $(document).on('dragstart', '.note', function(event){
@@ -98,4 +106,6 @@ $(function(){
 
     // autosave periodically
     var autosave = setInterval(function(){ save() }, 500);
+
+    setHeight();
 });
