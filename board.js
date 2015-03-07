@@ -3,38 +3,47 @@
 function getNotes(){
     // return notes to show.  If none saved, use a default set
     return (localStorage['notes'] && localStorage['notes'].length > 2) ? localStorage['notes'] : JSON.stringify([
-        {
-            "text":"This is a note.  You can edit it, you can drag it around and you can shift-click to delete it.",
-            "x":41,
-            "y":95
-        },
-        {
-            "text":"Notes are automatically loaded and saved for you behind the scenes.",
-            "x":597,
-            "y":95
-        },
-        {
-            "text":"Click any empty spot to create a new note.",
-            "x":317,
-            "y":95
-        }
+            {"text":"This is a note.  You can edit it, you can drag it around and you can shift-click to delete it.","x":23,"y":113},
+            {"text":"Click any empty spot to create a new note.","x":137,"y":234},
+            {"text":"Notes are automatically preserved for you between page visits.","x":320,"y":284},
     ]);
-    //[{ "text":"Click on the board to add new notes.", "x":31, "y":133 }, { "text":"Shift-click a note to remove it.", "x":309, "y":133 }, { "text":"Drag notes around wherever you want them.", "x":586, "y":133 }, { "text":"Notes are automatically loaded and saved for you behind the scenes.", "x":860, "y":133 } ]
 }
 
-function addNote(x,y, contents){
-    // optionally give contents to reload a specific note
+function addNote(note){
+    //Handle input as object or JSON
+    if (typeof note === 'string') note = JSON.parse(note);
+
     var note = $(document.createElement("div")).
         addClass("note").
-        css("left", x + "px").
-        css("top", y + "px").
+        css("left", note.x + "px").
+        css("top", note.y + "px").
         attr("contentEditable", "true").
-        text(contents);
+        text(note.text);
 
         $("#board").append(note);
         note.draggable();
         note.focus();
+        return note;
 };
+
+function removeNote(note){
+    localStorage['deleted'] = JSON.stringify({
+        x: parseInt($(note).css("left")),
+        y: parseInt($(note).css("top")),
+        text: $(note).text()
+    });
+
+    $(note).remove();
+
+}
+
+function undoRemoveNote(){
+    // Re-add the last deleted note
+    if (localStorage['deleted']) {
+        addNote(localStorage['deleted']);
+        delete localStorage['deleted'];
+    }
+}
 
 function load(notes) {
     // Load a particular note list.  Handle input as json or object
@@ -47,7 +56,7 @@ function load(notes) {
     }
 
     notes.forEach(function(note){
-        addNote(note.x, note.y, note.text);
+        addNote(note);
     });
 }
 
@@ -72,7 +81,7 @@ $(function(){
 
     // Clicking makes a new note
     $(document).on("click", '#board', function(event){
-        addNote(event.clientX, event.clientY);
+        addNote({x: event.clientX, y: event.clientY});
     });
 
     $(window).on('resize', function(event){
@@ -86,7 +95,7 @@ $(function(){
     $(document).on('mousedown', '.note', function(event){
         // Shift-click removes notes
         if (event.shiftKey) {
-            $(event.target).remove();
+            removeNote($(event.target));
         }
 
         // Move element to front
@@ -95,6 +104,10 @@ $(function(){
         event.target.focus();
         event.stopPropagation();
 
+    });
+
+    $(document).on('click', '#undo', function(event){
+        undoRemoveNote();
     });
 
     $(document).on('dragstop', '.note', function(event){
