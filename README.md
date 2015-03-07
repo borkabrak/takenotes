@@ -10,11 +10,16 @@ TODO:
 
 * Undo removing notes
 
-* Style notes to look more like scraps of notebook paper or post-its.
+* Some way to categorize them
+
+    -color?
+
+    -container boxes/file folders?
+
 
 * When re-focusing a note, place cursor at end of text
 
-* Delete button for a more obvious way to remove notes?
+* Have a delete button for a more obvious way to remove notes?
     - and maybe a color picker with it to change the note color
 
 
@@ -22,3 +27,5 @@ TO MAYBE DO:
 ============
 
 * Note() object?
+
+* Style notes to look more like scraps of notebook paper or post-its?
