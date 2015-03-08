@@ -14,7 +14,8 @@ myself, has zero way of seeing what you put in your notes.
 TODO:
 =====
 
-* Undo removing notes
+* Replace undo button with a stack of recoverable notes, sized down, in the
+  top right corner of the board.
 
 * Some way to categorize them
 
@@ -25,10 +26,6 @@ TODO:
 * Change fonts
 
 * When re-focusing a note, place cursor at end of text
-
-* Have a delete button for a more obvious way to remove notes?
-    - and maybe a color picker with it to change the note color
-
 
 TO MAYBE DO:
 ============
