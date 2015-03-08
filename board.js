@@ -9,6 +9,13 @@ function getNotes(){
     ]);
 }
 
+function updateUndoStatus() {
+    var deletedNotes = localStorage['deleted'] ? JSON.parse(localStorage['deleted']) : {};
+
+    document.querySelector("button#undo").disabled =
+        (typeof deletedNotes.text === 'undefined') ?  true : false;
+}
+
 function addNote(note){
     //Handle input as object or JSON
     if (typeof note === 'string') note = JSON.parse(note);
@@ -34,7 +41,7 @@ function removeNote(note){
     });
 
     $(note).remove();
-
+    updateUndoStatus();
 }
 
 function undoRemoveNote(){
@@ -43,6 +50,8 @@ function undoRemoveNote(){
         addNote(localStorage['deleted']);
         delete localStorage['deleted'];
     }
+
+    updateUndoStatus();
 }
 
 function load(notes) {
@@ -52,6 +61,7 @@ function load(notes) {
     if (typeof notes === "string") {
         notes = JSON.parse(notes)
     } else {
+        // TODO: delete this?
         notes;
     }
 
@@ -121,4 +131,7 @@ $(function(){
     var autosave = setInterval(function(){ save() }, 500);
 
     setHeight();
+
+    updateUndoStatus();
+
 });
