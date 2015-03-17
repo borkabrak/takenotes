@@ -31,7 +31,7 @@ function addNote(note){
         note.draggable();
         note.focus();
         return note;
-};
+}
 
 function removeNote(note){
     localStorage['deleted'] = JSON.stringify({
@@ -85,7 +85,7 @@ function save() {
 
 function setHeight(){
     $('#board').css("height", (window.innerHeight * 0.8) + "px");
-};
+}
 
 $(function(){
 
@@ -134,4 +134,4 @@ $(function(){
 
     updateUndoStatus();
 
-});
+})
