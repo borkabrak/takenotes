@@ -1,97 +1,16 @@
 'use strict';
 
-function getNotes(){
-    // return notes to show.  If none saved, use a default set
-    return (localStorage['notes'] && localStorage['notes'].length > 2) ? localStorage['notes'] : JSON.stringify([
-            {"text":"This is a note.  You can edit it, you can drag it around and you can shift-click to delete it.","x":23,"y":113},
-            {"text":"Click any empty spot to create a new note.","x":137,"y":234},
-            {"text":"Notes are automatically preserved for you between page visits.","x":320,"y":284},
-    ]);
-}
-
-function updateUndoStatus() {
-    var deletedNotes = localStorage['deleted'] ? JSON.parse(localStorage['deleted']) : {};
-
-    document.querySelector("button#undo").disabled =
-        (typeof deletedNotes.text === 'undefined') ?  true : false;
-}
-
-function addNote(note){
-    //Handle input as object or JSON
-    if (typeof note === 'string') note = JSON.parse(note);
-
-    var note = $(document.createElement("div")).
-        addClass("note").
-        css("left", note.x + "px").
-        css("top", note.y + "px").
-        attr("contentEditable", "true").
-        text(note.text);
-
-        $("#board").append(note);
-        note.draggable();
-        note.focus();
-        return note;
-};
-
-function removeNote(note){
-    localStorage['deleted'] = JSON.stringify({
-        x: parseInt($(note).css("left")),
-        y: parseInt($(note).css("top")),
-        text: $(note).text()
-    });
-
-    $(note).remove();
-    updateUndoStatus();
-}
-
-function undoRemoveNote(){
-    // Re-add the last deleted note
-    if (localStorage['deleted']) {
-        addNote(localStorage['deleted']);
-        delete localStorage['deleted'];
-    }
-
-    updateUndoStatus();
-}
-
-function load(notes) {
-    // Load a particular note list.  Handle input as json or object
-    $(".note").remove();
-
-    if (typeof notes === "string") {
-        notes = JSON.parse(notes)
-    } else {
-        // TODO: delete this?
-        notes;
-    }
-
-    notes.forEach(function(note){
-        addNote(note);
-    });
-}
-
-function save() {
-    var notes = [];
-    $(".note").each(function(i, note){
-        notes.push({
-            text: $(note).text(),
-            x: parseInt($(note).css("left")),
-            y: parseInt($(note).css("top"))
-        });
-    });
-
-    localStorage["notes"] = JSON.stringify(notes);
-}
-
 function setHeight(){
     $('#board').css("height", (window.innerHeight * 0.8) + "px");
 };
 
 $(function(){
 
+    var notes = new Notes($("#board"));
+
     // Clicking makes a new note
     $(document).on("click", '#board', function(event){
-        addNote({x: event.clientX, y: event.clientY});
+        notes.create({x: event.clientX, y: event.clientY});
     });
 
     $(window).on('resize', function(event){
@@ -105,7 +24,7 @@ $(function(){
     $(document).on('mousedown', '.note', function(event){
         // Shift-click removes notes
         if (event.shiftKey) {
-            removeNote($(event.target));
+            notes.destroy($(event.target));
         }
 
         // Move element to front
@@ -117,7 +36,7 @@ $(function(){
     });
 
     $(document).on('click', '#undo', function(event){
-        undoRemoveNote();
+        notes.recover();
     });
 
     $(document).on('dragstop', '.note', function(event){
@@ -125,13 +44,11 @@ $(function(){
     });
 
     // Autoload
-    var autoload = setTimeout(function(){ load(getNotes()) }, 500);
+    var autoload = setTimeout(function(){ notes.load() }, 500);
 
     // autosave periodically
-    var autosave = setInterval(function(){ save() }, 500);
+    var autosave = setInterval(function(){ notes.save() }, 500);
 
     setHeight();
-
-    updateUndoStatus();
 
 });
