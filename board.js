@@ -1,54 +1,54 @@
 'use strict';
 
 function setHeight(){
-    $('#board').css("height", (window.innerHeight * 0.8) + "px");
-};
+        $('#board').css("height", (window.innerHeight * 0.8) + "px");
+}
 
 $(function(){
 
-    var notes = new Notes($("#board"));
-
     // Clicking makes a new note
     $(document).on("click", '#board', function(event){
-        notes.create({x: event.clientX, y: event.clientY});
+        Notes.create({x: event.clientX, y: event.clientY});
     });
 
+    // Resize board when window is resized
     $(window).on('resize', function(event){
-        setHeight();
     });
 
+    // 'Pick up' a note when starting to drag it.
     $(document).on('dragstart', '.note', function(event){
         $(event.target).addClass("raised");
     });
 
+    // When a note is clicked..
     $(document).on('mousedown', '.note', function(event){
         // Shift-click removes notes
         if (event.shiftKey) {
-            notes.destroy($(event.target));
+            Notes.destroy($(event.target));
         }
 
-        // Move element to front
+        // Regular click moves note to top, and puts the cursor in it.
         $(event.target).parent().append(event.target);
-
         event.target.focus();
         event.stopPropagation();
 
     });
 
+    // Undo button retrieves deleted notes.
     $(document).on('click', '#undo', function(event){
-        notes.recover();
+        Notes.recover();
     });
 
+    // 'Put down' the note when done dragging it.
     $(document).on('dragstop', '.note', function(event){
         $(event.target).removeClass("raised");
     });
 
-    // Autoload
-    var autoload = setTimeout(function(){ notes.load() }, 500);
-
-    // autosave periodically
-    var autosave = setInterval(function(){ notes.save() }, 500);
-
+    // Load initial notes (perhaps) saved
+    var autoload = setTimeout(function(){ Notes.load() }, 500);
+    // Start saving notes
+    var autosave = setInterval(function(){ Notes.save() }, 500);
+    // Set the height initially
     setHeight();
 
 });
