@@ -60,10 +60,7 @@ function load(notes) {
 
     if (typeof notes === "string") {
         notes = JSON.parse(notes)
-    } else {
-        // TODO: delete this?
-        notes;
-    }
+    } 
 
     notes.forEach(function(note){
         addNote(note);

@@ -20,3 +20,5 @@ TO MAYBE DO:
 * Note() object?
 
 * Style notes to look more like scraps of notebook paper or post-its?
+
+* Change notes from <div> to <textarea>?
