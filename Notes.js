@@ -18,7 +18,7 @@ var Notes = {
                 {"text":"Notes are automatically preserved for you between page visits.","x":320,"y":284},
             ]);
 
-            localStorage['deleted'] = "";
+            localStorage['deleted'] = "[]";
             Notes.updateUndo();
 
         };
@@ -65,7 +65,10 @@ var Notes = {
     },
 
     "destroy": function(element){
-        localStorage['deleted'] = JSON.stringify({
+
+        var deletedNotes = JSON.parse(localStorage['deleted']);
+
+        deletedNotes.push({
             x: parseInt($(element).css("left")),
             y: parseInt($(element).css("top")),
             text: $(element).text()
@@ -73,15 +76,16 @@ var Notes = {
 
         $(element).remove();
 
+        localStorage['deleted'] = JSON.stringify(deletedNotes);
+
         Notes.updateUndo();
     },
 
     "recover": function(){
-        if (typeof localStorage['deleted'] !== 'undefined') {
-            Notes.add(JSON.parse(localStorage['deleted']));
-        }
+        var deletedNotes = JSON.parse(localStorage['deleted']);
+        Notes.add();
+        localStorage['deleted'] += JSON.stringify();
 
-        localStorage['deleted'] = "";
         Notes.updateUndo();
     },
 

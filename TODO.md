@@ -2,6 +2,7 @@ TODO:
 =====
 
 * Mult-undo
+    (Remember to test on a non-existent 'deleted' key in localStorage)
 
 * STACKS!  This is a very natural way to group these things that look like
     note cards.  Each note in a stack:
