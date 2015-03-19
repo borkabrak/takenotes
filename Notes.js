@@ -18,7 +18,8 @@ var Notes = {
                 {"text":"Notes are automatically preserved for you between page visits.","x":320,"y":284},
             ]);
 
-            document.querySelector("button#undo").disabled = true;
+            localStorage['deleted'] = "";
+            Notes.updateUndo();
 
         };
 
@@ -32,7 +33,7 @@ var Notes = {
             Notes.add(note);
         });
     },
-    
+
     "add": function(options){
         if (typeof options === 'string') { options = JSON.parse(options) };
 
@@ -72,7 +73,7 @@ var Notes = {
 
         $(element).remove();
 
-        document.querySelector("button#undo").disabled = false;
+        Notes.updateUndo();
     },
 
     "recover": function(){
@@ -80,7 +81,14 @@ var Notes = {
             Notes.add(JSON.parse(localStorage['deleted']));
         }
 
-        document.querySelector("button#undo").disabled = true;
+        localStorage['deleted'] = "";
+        Notes.updateUndo();
+    },
 
+    "updateUndo": function(){
+        document.querySelector("button#undo").disabled = 
+            (localStorage['deleted'] && localStorage['deleted'].length > 2) ? 
+            false :
+            true;
     }
 }

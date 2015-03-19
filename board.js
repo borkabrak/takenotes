@@ -50,5 +50,8 @@ $(function(){
     var autosave = setInterval(function(){ Notes.save() }, 500);
     // Set the height initially
     setHeight();
+    
+    // Set the undo button status
+    Notes.updateUndo();
 
 });
