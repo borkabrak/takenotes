@@ -52,7 +52,6 @@ var Notes = {
         });
 
         localStorage["notes"] = JSON.stringify(notes);
-        localStorage["deleted"] = JSON.stringify(this.deleted);
     },
 
     "destroy": function(element){
@@ -63,6 +62,17 @@ var Notes = {
         });
 
         $(element).remove();
+
+        document.querySelector("button#undo").disabled = false;
+    },
+
+    "recover": function(){
+        if (typeof localStorage['deleted'] !== 'undefined') {
+            Notes.add(JSON.parse(localStorage['deleted']));
+        }
+
+        document.querySelector("button#undo").disabled = true;
+
     }
 }
 
