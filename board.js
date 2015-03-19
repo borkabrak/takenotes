@@ -8,7 +8,7 @@ $(function(){
 
     // Clicking makes a new note
     $(document).on("click", '#board', function(event){
-        Notes.create({x: event.clientX, y: event.clientY});
+        Notes.add({x: event.clientX, y: event.clientY});
     });
 
     // Resize board when window is resized

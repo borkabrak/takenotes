@@ -53,8 +53,17 @@ var Notes = {
 
         localStorage["notes"] = JSON.stringify(notes);
         localStorage["deleted"] = JSON.stringify(this.deleted);
-    }
+    },
 
+    "destroy": function(element){
+        localStorage['deleted'] = JSON.stringify({
+            x: parseInt($(element).css("left")),
+            y: parseInt($(element).css("top")),
+            text: $(element).text()
+        });
+
+        $(element).remove();
+    }
 }
 
 /*
