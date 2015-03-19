@@ -4,15 +4,24 @@ var Notes = {
 
     "load": function(){
 
-        var notes = (localStorage['notes'] && localStorage['notes'].length > 2) ? 
-            localStorage['notes'] : 
-            JSON.stringify([
+        var notes;
+
+        if (localStorage['notes'] && localStorage['notes'].length > 2) {
+
+            notes = localStorage['notes'];
+
+        } else {
+
+            notes = JSON.stringify([
                 {"text":"This is a note.  You can edit it, you can drag it around and you can shift-click to delete it.","x":23,"y":113},
                 {"text":"Click any empty spot to create a new note.","x":137,"y":234},
                 {"text":"Notes are automatically preserved for you between page visits.","x":320,"y":284},
             ]);
 
-        // Load a particular note list.  Handle input as json or object
+            document.querySelector("button#undo").disabled = true;
+
+        };
+
         $(".note").remove();
 
         if (typeof notes === "string") {
