@@ -83,16 +83,32 @@ var Notes = {
 
     "recover": function(){
         var deletedNotes = JSON.parse(localStorage['deleted']);
-        Notes.add();
-        localStorage['deleted'] += JSON.stringify();
+        Notes.add(deletedNotes.pop());
+        localStorage['deleted'] = JSON.stringify(deletedNotes);
 
         Notes.updateUndo();
     },
 
     "updateUndo": function(){
-        document.querySelector("button#undo").disabled = 
-            (localStorage['deleted'] && localStorage['deleted'].length > 2) ? 
+        document.querySelector("button#undo").disabled =
+            (localStorage['deleted'] && localStorage['deleted'].length > 2) ?
             false :
             true;
+    },
+
+    "reset": function(){
+        localStorage.clear();
+        Notes.autoSave("off");
+    },
+
+    "autoSave": function(deactivateAutoSave){
+        if (deactivateAutoSave) {
+            console.log("Autosave: OFF");
+            clearInterval(window.autosave);
+            delete window.autosave;
+        } else {
+            window.autosave = setInterval(function(){ Notes.save() }, 500);
+        }
     }
+
 }

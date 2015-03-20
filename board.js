@@ -47,10 +47,11 @@ $(function(){
     // Load initial notes (perhaps) saved
     var autoload = setTimeout(function(){ Notes.load() }, 500);
     // Start saving notes
-    var autosave = setInterval(function(){ Notes.save() }, 500);
+    Notes.autoSave();
+
     // Set the height initially
     setHeight();
-    
+
     // Set the undo button status
     Notes.updateUndo();
 
