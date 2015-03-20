@@ -35,8 +35,14 @@ $(function(){
     });
 
     // Undo button retrieves deleted notes.
-    $(document).on('click', '#undo', function(event){
+    $(document).on('click', 'button#undo', function(event){
         Notes.recover();
+    });
+
+    // Re-initialize notes to the initial default
+    $(document).on('click', 'button#reset', function(event){
+        Notes.reset();
+        location.reload();
     });
 
     // 'Put down' the note when done dragging it.
