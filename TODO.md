@@ -1,9 +1,6 @@
 TODO:
 =====
 
-* Mult-undo
-    (Remember to test on a non-existent 'deleted' key in localStorage)
-
 * STACKS!  This is a very natural way to group these things that look like
     note cards.  Each note in a stack:
       -- shares an identical/similar color
@@ -13,7 +10,7 @@ TODO:
 
 * Allow changing fonts
 
-* When re-focusing a note, place cursor at end of text
+* When re-focusing a note, place cursor at end of text[1]
 
 * Preserve newlines within notes over save/load
 
@@ -22,6 +19,6 @@ TO MAYBE DO:
 
 * Style notes to look more like scraps of notebook paper or post-its?
 
-* Change notes from div to textarea?
+* [1]Change notes from div to textarea?
 
 * See how much jQuery I can factor out?
