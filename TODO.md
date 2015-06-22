@@ -18,6 +18,12 @@ TODO:
 
 * Revamp undo button look-and-feel
 
+A DIFFERENT WAY TO GROUP NOTES
+==============================
+Maybe have all the notes on a page at once comprise a single group.  A
+drop-down or something can bear the name, which is editable.  This would allow
+working with just the notes in a group, and easily switching between groups.
+
 TO MAYBE DO:
 ============
 
