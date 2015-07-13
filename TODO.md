@@ -5,16 +5,7 @@ TODO:
 BUGS!!
 ------
 
-1.) On my Windows box at AHA, loading the page fails to apply styles at all.
-
-No background color, no border, no anything.  If the CSS is changed in DevTools
-on Chrome, all the styles suddenly get applied and the page looks as expected.
-
-Javascript is still being applied, as notes can be dragged and dropped.
-However, clicking a note makes them all jump to different locations on the
-page.  It looks like the Y position (vertical) is the only dimension that
-changes.  This persists, and indeed gets worse after the styles are somehow
-triggered by DevTools (the vertical jump becomes greater in magnitude.)
+None known at this time.
 
 
 FEATURES
